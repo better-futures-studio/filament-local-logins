@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace BetterFuturesStudio\FilamentLocalLogins\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class FilamentLocalLoginsCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'filament-local-logins';
 
     public $description = 'My command';
 

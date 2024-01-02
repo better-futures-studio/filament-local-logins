@@ -1,17 +1,17 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "better-futures-studio/filament-local-logins",
+    "description": "This is my package filament-local-logins",
     "keywords": [
-        ":vendor_name",
+        "Better Futures Studio",
         "laravel",
-        ":package_slug"
+        "filament-local-logins"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/better-futures-studio/filament-local-logins",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Karim Ali",
+            "email": "karim@boca.pro",
             "role": "Developer"
         }
     ],
@@ -35,19 +35,19 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src/",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories/"
+            "BetterFuturesStudio\\FilamentLocalLogins\\": "src/",
+            "BetterFuturesStudio\\FilamentLocalLogins\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests/",
+            "BetterFuturesStudio\\FilamentLocalLogins\\Tests\\": "tests/",
             "Workbench\\App\\": "workbench/app/"
         }
     },
     "scripts": {
         "post-autoload-dump": "@composer run prepare",
-        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
+        "clear": "@php vendor/bin/testbench package:purge-filament-local-logins --ansi",
         "prepare": "@php vendor/bin/testbench package:discover --ansi",
         "build": [
             "@composer run prepare",
@@ -73,10 +73,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "BetterFuturesStudio\\FilamentLocalLogins\\FilamentLocalLoginsServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "FilamentLocalLogins": "BetterFuturesStudio\\FilamentLocalLogins\\Facades\\FilamentLocalLogins"
             }
         }
     },
