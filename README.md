@@ -9,6 +9,14 @@ This package offers a convenient method for developers to log in locally with a 
 
 To utilize this package, you need to set `ADMIN_PANEL_LOCAL_LOGINS_ENABLED` and `ADMIN_PANEL_LOCAL_LOGIN_EMAILS` in your environment file. These settings allow you to enable or disable the package and specify the emails that can log in.
 
+## Requirements
+
+This package requires the following:
+
+- PHP 8.1^
+- Laravel 8.0^
+- Filament 3.0^
+
 ## Support us
 
 [<img src="https://github-ads.s3.eu-central-1.amazonaws.com/filament-local-logins.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/filament-local-logins)
