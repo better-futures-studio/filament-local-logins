@@ -5,7 +5,9 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/better-futures-studio/filament-local-logins/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/better-futures-studio/filament-local-logins/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/better-futures-studio/filament-local-logins.svg?style=flat-square)](https://packagist.org/packages/better-futures-studio/filament-local-logins)
 
-This package provides a convenient way for developers to log in locally with just one click. It works by using an email address set in the environment file, saving developers the time of repeatedly entering email and password information in the Filament panel. This package is versatile and can be used in an admin panel or multiple panels, with configuration options available in the config file. It's an excellent tool for development, enhancing productivity and efficiency.
+This package provides a convenient way for developers to log in locally with just one click. It works by using email addresses set in the environment file, saving developers the time of repeatedly entering email and password information in the Filament panel. This package is versatile and can be used in an admin panel or multiple panels, with configuration options available in the config file. It's an excellent tool for development, enhancing productivity and efficiency.
+
+To use this package, you need to set `ADMIN_PANEL_LOCAL_LOGINS_ENABLED` and `ADMIN_PANEL_LOCAL_LOGIN_EMAILS` in your environment file. These settings allow you to enable or disable the package and specify the emails that can log in.
 
 ## Support us
 
@@ -37,6 +39,22 @@ return [
         'admin' => [
             'enabled' => env('ADMIN_PANEL_LOCAL_LOGINS_ENABLED', env('APP_ENV') === 'local'),
             'emails' => array_filter(array_map('trim', explode(',', env('ADMIN_PANEL_LOCAL_LOGIN_EMAILS', '')))),
+        ],
+    ],
+];
+```
+You can use it in multiple panels so if you want to add a configuration for a new panel, you can add a new config key with the panel id. For example, users have the same values but with a different environment key like `USERS_PANEL_LOCAL_LOGINS_ENABLED` and `USERS_PANEL_LOCAL_LOGIN_EMAILS`.
+
+```php
+return [
+    'panels' => [
+        'admin' => [
+            'enabled' => env('ADMIN_PANEL_LOCAL_LOGINS_ENABLED', env('APP_ENV') === 'local'),
+            'emails' => array_filter(array_map('trim', explode(',', env('ADMIN_PANEL_LOCAL_LOGIN_EMAILS', '')))),
+        ],
+        'users' => [
+            'enabled' => env('USERS_PANEL_LOCAL_LOGINS_ENABLED', env('APP_ENV') === 'local'),
+            'emails' => array_filter(array_map('trim', explode(',', env('USERS_PANEL_LOCAL_LOGIN_EMAILS', '')))),
         ],
     ],
 ];
@@ -81,3 +99,4 @@ Please review [our security policy](../../security/policy) on how to report secu
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+
