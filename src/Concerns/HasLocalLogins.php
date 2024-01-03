@@ -52,7 +52,7 @@ trait HasLocalLogins
         ]);
         $modelClass = $provider->getModel();
 
-        if (!$user instanceof $modelClass) {
+        if (! $user instanceof $modelClass) {
             return Notification::make()
                 ->title('This account was not found in your database.')
                 ->danger()
