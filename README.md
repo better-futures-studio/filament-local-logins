@@ -5,9 +5,9 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/better-futures-studio/filament-local-logins/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/better-futures-studio/filament-local-logins/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/better-futures-studio/filament-local-logins.svg?style=flat-square)](https://packagist.org/packages/better-futures-studio/filament-local-logins)
 
-This package offers a convenient method for developers to log in locally with a single click. It operates by utilizing email addresses set in the environment file, this saving developers from repeatedly entering email and password details in the Filament panel. This package is versatile and can be employed in an admin panel or multiple panels, with configuration options available in the config file. It's an excellent tool for development, enhancing productivity and efficiency.
+This package allows developers to log in locally using pre-set email addresses, eliminating the need for repeated email and password entries. It can be used in an admin panel or multiple panels, with configuration options available in the config file.
 
-To utilize this package, you need to set `ADMIN_PANEL_LOCAL_LOGINS_ENABLED` and `ADMIN_PANEL_LOCAL_LOGIN_EMAILS` in your environment file. These settings allow you to enable or disable the package and specify the emails that can log in.
+Set `ADMIN_PANEL_LOCAL_LOGINS_ENABLED` and `ADMIN_PANEL_LOCAL_LOGIN_EMAILS` in your .env file to use this package.
 
 **NOTE:** The emails that will be set in the environment file must be registered in the database.
 
