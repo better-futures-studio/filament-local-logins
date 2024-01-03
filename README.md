@@ -5,9 +5,9 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/better-futures-studio/filament-local-logins/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/better-futures-studio/filament-local-logins/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/better-futures-studio/filament-local-logins.svg?style=flat-square)](https://packagist.org/packages/better-futures-studio/filament-local-logins)
 
-This package allows developers to log in locally using pre-set email addresses, eliminating the need for repeated email and password entries. It can be used in an admin panel or multiple panels, with configuration options available in the config file.
+This package allows you to log in locally using pre-set email addresses, making it easy to log into one or multiple development user accounts. It can be used in an admin panel or multiple panels.
 
-**NOTE:** The emails that will be set in the environment file must be registered in the database.
+**NOTE:** You must have created the user accounts in order to use them with the login buttons, this package doesn't support the creation of user accounts.
 
 ## Requirements
 
@@ -15,14 +15,6 @@ This package requires the following:
 
 - `PHP:^8.1`
 - `Filament:^3.0`
-
-## Support us
-
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/filament-local-logins.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/filament-local-logins)
-
-We invest a significant amount of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [purchasing one of our paid products](https://spatie.be/open-source/support-us).
-
-We greatly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
 
 ## Installation
 
@@ -51,7 +43,7 @@ return [
 ];
 ```
 
-You can use it in multiple panels so if you want to add a configuration for a new panel, you can add a new config key with the panel id. For example, users have the same values but with a different environment key like `USERS_PANEL_LOCAL_LOGINS_ENABLED` and `USERS_PANEL_LOCAL_LOGIN_EMAILS`.
+You can use it in multiple panels so if you want to add a configuration for a new panel, you can add a new config key with the panel id. For example, you can add `user` panel configuration like this:
 
 ```php
 return [
@@ -60,9 +52,9 @@ return [
             'enabled' => env('ADMIN_PANEL_LOCAL_LOGINS_ENABLED', env('APP_ENV') === 'local'),
             'emails' => array_filter(array_map('trim', explode(',', env('ADMIN_PANEL_LOCAL_LOGIN_EMAILS', '')))),
         ],
-        'users' => [
-            'enabled' => env('USERS_PANEL_LOCAL_LOGINS_ENABLED', env('APP_ENV') === 'local'),
-            'emails' => array_filter(array_map('trim', explode(',', env('USERS_PANEL_LOCAL_LOGIN_EMAILS', '')))),
+        'user' => [
+            'enabled' => env('USER_PANEL_LOCAL_LOGINS_ENABLED', env('APP_ENV') === 'local'),
+            'emails' => array_filter(array_map('trim', explode(',', env('USER_PANEL_LOCAL_LOGIN_EMAILS', '')))),
         ],
     ],
 ];
@@ -76,19 +68,19 @@ php artisan vendor:publish --tag="filament-local-logins-views"
 
 ## Usage
 
-Set `ADMIN_PANEL_LOCAL_LOGINS_ENABLED` and `ADMIN_PANEL_LOCAL_LOGIN_EMAILS` in your .env file to use this package.
+Set the `ADMIN_PANEL_LOCAL_LOGIN_EMAILS` in your .env file to use this package.
 
 In your .env file, add the following:
 
 ```bash
-ADMIN_PANEL_LOCAL_LOGINS_ENABLED=true
-# Provide a comma-separated list of emails that can log in locally
-ADMIN_PANEL_LOCAL_LOGIN_EMAILS="karim@boca.pro"
+ADMIN_PANEL_LOCAL_LOGIN_EMAILS="free-user@example.com,paid-user@example.com" # Provide a comma-separated list of emails that can log in locally
 ```
 
-In YourPanelProvider, add the following line:
+In your Filament panel provider, typically `AdminPanelProvider`, you need to register the plugin:
 
 ```php
+use BetterFuturesStudio\FilamentLocalLogins\LocalLogins;
+...
 $panel->plugin(new LocalLogins());
 ```
 
