@@ -7,8 +7,6 @@
 
 This package allows developers to log in locally using pre-set email addresses, eliminating the need for repeated email and password entries. It can be used in an admin panel or multiple panels, with configuration options available in the config file.
 
-Set `ADMIN_PANEL_LOCAL_LOGINS_ENABLED` and `ADMIN_PANEL_LOCAL_LOGIN_EMAILS` in your .env file to use this package.
-
 **NOTE:** The emails that will be set in the environment file must be registered in the database.
 
 ## Requirements
@@ -78,9 +76,23 @@ php artisan vendor:publish --tag="filament-local-logins-views"
 
 ## Usage
 
+Set `ADMIN_PANEL_LOCAL_LOGINS_ENABLED` and `ADMIN_PANEL_LOCAL_LOGIN_EMAILS` in your .env file to use this package.
+
+
+In your .env file, add the following:
+
+```bash
+ADMIN_PANEL_LOCAL_LOGINS_ENABLED=true
+# Provide a comma-separated list of emails that can log in locally
+ADMIN_PANEL_LOCAL_LOGIN_EMAILS="karim@boca.pro"
+```
+
+In YourPanelProvider, add the following line:
+
 ```php
 $panel->plugin(new LocalLogins());
 ```
+
 
 ## Output
 
