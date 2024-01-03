@@ -82,7 +82,7 @@ $panel->plugin(new LocalLogins());
 
 ## Output
 
-[![SCR-20240103-lftm.png](https://i.postimg.cc/VvpVkct5/SCR-20240103-lftm.png)]
+![SCR-20240103-lftm.png](https://i.postimg.cc/VvpVkct5/SCR-20240103-lftm.png)
 
 ## Testing
 
