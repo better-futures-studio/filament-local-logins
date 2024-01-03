@@ -1,6 +1,6 @@
 <?php
 
-namespace BetterFuturesStudio\FilamentLocalLogins\Traits;
+namespace BetterFuturesStudio\FilamentLocalLogins\Concerns;
 
 use BetterFuturesStudio\FilamentLocalLogins\LocalLogins;
 use Filament\Facades\Filament;
@@ -10,18 +10,18 @@ use Filament\Panel;
 use Illuminate\Auth\EloquentUserProvider;
 use Illuminate\Auth\SessionGuard;
 
-trait LoginTrait
+trait HasLocalLogins
 {
     /**
      * @return array<string>
      */
     public function localLoginEmails(): array
     {
-        if (! $this->allowsLocalLogin()) {
+        $panel = Filament::getCurrentPanel();
+
+        if (! $this->allowsLocalLogin($panel)) {
             return [];
         }
-
-        $panel = Filament::getCurrentPanel();
 
         $emails = config("filament-local-logins.panels.{$panel->getId()}.emails");
 
@@ -34,10 +34,10 @@ trait LoginTrait
 
     public function loginUser(string $email): ?LoginResponse
     {
-
-        abort_unless($this->allowsLocalLogin(), 403);
-
         $panel = Filament::getCurrentPanel();
+
+        abort_unless($this->allowsLocalLogin($panel), 403);
+
         throw_unless($panel instanceof Panel, 'The panel must be an instance of '.Panel::class);
 
         $guard = $panel->auth();
@@ -70,10 +70,8 @@ trait LoginTrait
         return app(LoginResponse::class);
     }
 
-    protected function allowsLocalLogin(): bool
+    protected function allowsLocalLogin(Panel $panel): bool
     {
-        $panel = Filament::getCurrentPanel();
-
         if (empty($panel)) {
             return false;
         }

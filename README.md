@@ -9,6 +9,10 @@ This package allows you to log in locally using pre-set email addresses, making 
 
 **NOTE:** You must have created the user accounts in order to use them with the login buttons, this package doesn't support the creation of user accounts.
 
+## Output
+
+![SCR-20240103-qijm.png](https://i.postimg.cc/bYW7M5MZ/SCR-20240103-qijm.png)
+
 ## Requirements
 
 This package requires the following:
@@ -83,10 +87,6 @@ use BetterFuturesStudio\FilamentLocalLogins\LocalLogins;
 ...
 $panel->plugin(new LocalLogins());
 ```
-
-## Output
-
-![SCR-20240103-lftm.png](https://i.postimg.cc/VvpVkct5/SCR-20240103-lftm.png)
 
 ## Testing
 

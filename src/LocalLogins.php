@@ -2,6 +2,7 @@
 
 namespace BetterFuturesStudio\FilamentLocalLogins;
 
+use BetterFuturesStudio\FilamentLocalLogins\Filament\Pages\Auth\LoginPage;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 
