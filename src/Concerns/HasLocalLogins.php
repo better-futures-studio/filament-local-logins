@@ -6,6 +6,7 @@ use BetterFuturesStudio\FilamentLocalLogins\LocalLogins;
 use Filament\Facades\Filament;
 use Filament\Http\Responses\Auth\Contracts\LoginResponse;
 use Filament\Models\Contracts\FilamentUser;
+use Filament\Notifications\Notification;
 use Filament\Panel;
 use Illuminate\Auth\EloquentUserProvider;
 use Illuminate\Auth\SessionGuard;
@@ -32,11 +33,11 @@ trait HasLocalLogins
         return $emails;
     }
 
-    public function loginUser(string $email): ?LoginResponse
+    public function loginUser(string $email): LoginResponse|Notification
     {
         $panel = Filament::getCurrentPanel();
 
-        abort_unless($this->allowsLocalLogin($panel), 403);
+        abort_unless($this->allowsLocalLogin($panel), 403, 'Local login is not allowed for this panel.');
 
         throw_unless($panel instanceof Panel, 'The panel must be an instance of '.Panel::class);
 
@@ -50,7 +51,13 @@ trait HasLocalLogins
             'email' => $email,
         ]);
         $modelClass = $provider->getModel();
-        abort_unless($user instanceof $modelClass, 404);
+
+        if (!$user instanceof $modelClass) {
+            return Notification::make()
+                ->title('This account was not found in your database.')
+                ->danger()
+                ->send();
+        }
 
         $guard->login($user);
 
