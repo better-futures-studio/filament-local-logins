@@ -13,8 +13,8 @@ To utilize this package, you need to set `ADMIN_PANEL_LOCAL_LOGINS_ENABLED` and 
 
 This package requires the following:
 
-- `PHP:^8.1`
-- `Filament:^3.0`
+-   `PHP:^8.1`
+-   `Filament:^3.0`
 
 ## Support us
 
@@ -82,9 +82,7 @@ $panel->plugin(new LocalLogins());
 
 ## Output
 
-Here is a screenshot of the output:
-
-![Output Screenshot](https://i.ibb.co/nLBXHMt/SCR-20240103-lftm.png){:height="50%" width="50%"}
+[![SCR-20240103-lftm.png](https://i.postimg.cc/VvpVkct5/SCR-20240103-lftm.png)]
 
 ## Testing
 
