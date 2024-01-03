@@ -23,7 +23,7 @@ trait HasLocalLogins
             return [];
         }
 
-        $emails = config("filament-local-logins.panels.{$panel->getId()}.emails");
+        $emails = config("filament-local-logins.panels.{$panel->getId()}.emails", []);
 
         if (! is_array($emails)) {
             return [];
