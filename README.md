@@ -5,17 +5,17 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/better-futures-studio/filament-local-logins/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/better-futures-studio/filament-local-logins/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/better-futures-studio/filament-local-logins.svg?style=flat-square)](https://packagist.org/packages/better-futures-studio/filament-local-logins)
 
-This package provides a convenient way for developers to log in locally with just one click. It works by using email addresses set in the environment file, saving developers the time of repeatedly entering email and password information in the Filament panel. This package is versatile and can be used in an admin panel or multiple panels, with configuration options available in the config file. It's an excellent tool for development, enhancing productivity and efficiency.
+This package offers a convenient method for developers to log in locally with a single click. It operates by utilizing email addresses set in the environment file, this saving developers from repeatedly entering email and password details in the Filament panel. This package is versatile and can be employed in an admin panel or multiple panels, with configuration options available in the config file. It's an excellent tool for development, enhancing productivity and efficiency.
 
-To use this package, you need to set `ADMIN_PANEL_LOCAL_LOGINS_ENABLED` and `ADMIN_PANEL_LOCAL_LOGIN_EMAILS` in your environment file. These settings allow you to enable or disable the package and specify the emails that can log in.
+To utilize this package, you need to set `ADMIN_PANEL_LOCAL_LOGINS_ENABLED` and `ADMIN_PANEL_LOCAL_LOGIN_EMAILS` in your environment file. These settings allow you to enable or disable the package and specify the emails that can log in.
 
 ## Support us
 
 [<img src="https://github-ads.s3.eu-central-1.amazonaws.com/filament-local-logins.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/filament-local-logins)
 
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
+We invest a significant amount of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [purchasing one of our paid products](https://spatie.be/open-source/support-us).
 
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+We greatly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
 
 ## Installation
 
@@ -43,6 +43,7 @@ return [
     ],
 ];
 ```
+
 You can use it in multiple panels so if you want to add a configuration for a new panel, you can add a new config key with the panel id. For example, users have the same values but with a different environment key like `USERS_PANEL_LOCAL_LOGINS_ENABLED` and `USERS_PANEL_LOCAL_LOGIN_EMAILS`.
 
 ```php
@@ -69,8 +70,7 @@ php artisan vendor:publish --tag="filament-local-logins-views"
 ## Usage
 
 ```php
-$panel
-    ->plugin(new LocalLogins())
+$panel->plugin(new LocalLogins());
 ```
 
 ## Testing
@@ -99,4 +99,3 @@ Please review [our security policy](../../security/policy) on how to report secu
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
-
