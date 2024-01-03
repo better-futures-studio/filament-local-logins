@@ -9,6 +9,8 @@ This package offers a convenient method for developers to log in locally with a 
 
 To utilize this package, you need to set `ADMIN_PANEL_LOCAL_LOGINS_ENABLED` and `ADMIN_PANEL_LOCAL_LOGIN_EMAILS` in your environment file. These settings allow you to enable or disable the package and specify the emails that can log in.
 
+**NOTE:** The emails that will be set in the environment file must be registered in the database.
+
 ## Requirements
 
 This package requires the following:
