@@ -14,7 +14,7 @@ To utilize this package, you need to set `ADMIN_PANEL_LOCAL_LOGINS_ENABLED` and 
 This package requires the following:
 
 - `PHP:^8.1`
-- `Filament:^3.0^`
+- `Filament:^3.0`
 
 ## Support us
 
