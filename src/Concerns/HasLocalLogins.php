@@ -70,7 +70,7 @@ trait HasLocalLogins
         return app(LoginResponse::class);
     }
 
-    protected function allowsLocalLogin(Panel $panel): bool
+    protected function allowsLocalLogin(?Panel $panel): bool
     {
         if (empty($panel)) {
             return false;
