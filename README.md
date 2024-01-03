@@ -84,7 +84,7 @@ $panel->plugin(new LocalLogins());
 
 Here is a screenshot of the output:
 
-![Output Screenshot](https://i.ibb.co/nLBXHMt/SCR-20240103-lftm.png)
+![Output Screenshot](https://i.ibb.co/nLBXHMt/SCR-20240103-lftm.png){:height="50%" width="50%"}
 
 ## Testing
 
