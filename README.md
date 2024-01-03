@@ -80,6 +80,12 @@ php artisan vendor:publish --tag="filament-local-logins-views"
 $panel->plugin(new LocalLogins());
 ```
 
+## Output
+
+Here is a screenshot of the output:
+
+![Output Screenshot](https://i.ibb.co/nLBXHMt/SCR-20240103-lftm.png)
+
 ## Testing
 
 ```bash
