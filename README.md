@@ -13,8 +13,8 @@ This package allows developers to log in locally using pre-set email addresses, 
 
 This package requires the following:
 
--   `PHP:^8.1`
--   `Filament:^3.0`
+- `PHP:^8.1`
+- `Filament:^3.0`
 
 ## Support us
 
@@ -78,7 +78,6 @@ php artisan vendor:publish --tag="filament-local-logins-views"
 
 Set `ADMIN_PANEL_LOCAL_LOGINS_ENABLED` and `ADMIN_PANEL_LOCAL_LOGIN_EMAILS` in your .env file to use this package.
 
-
 In your .env file, add the following:
 
 ```bash
@@ -92,7 +91,6 @@ In YourPanelProvider, add the following line:
 ```php
 $panel->plugin(new LocalLogins());
 ```
-
 
 ## Output
 
@@ -118,8 +116,8 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
--   [Karim Ali](https://github.com/better-futures-studio)
--   [All Contributors](../../contributors)
+- [Karim Ali](https://github.com/better-futures-studio)
+- [All Contributors](../../contributors)
 
 ## License
 
