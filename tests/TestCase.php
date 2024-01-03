@@ -2,9 +2,9 @@
 
 namespace BetterFuturesStudio\FilamentLocalLogins\Tests;
 
+use BetterFuturesStudio\FilamentLocalLogins\FilamentLocalLoginsServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use BetterFuturesStudio\FilamentLocalLogins\FilamentLocalLoginsServiceProvider;
 
 class TestCase extends Orchestra
 {
