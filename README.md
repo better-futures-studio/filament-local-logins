@@ -108,7 +108,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [Karim Ali](https://github.com/better-futures-studio)
+- [Karim Ali](https://github.com/KarimAlii)
 - [All Contributors](../../contributors)
 
 ## License

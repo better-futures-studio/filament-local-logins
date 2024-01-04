@@ -33,7 +33,7 @@ trait HasLocalLogins
         return $emails;
     }
 
-    public function loginUser(string $email): LoginResponse|Notification
+    public function loginUser(string $email): LoginResponse
     {
         $panel = Filament::getCurrentPanel();
 
@@ -53,10 +53,7 @@ trait HasLocalLogins
         $modelClass = $provider->getModel();
 
         if (! $user instanceof $modelClass) {
-            return Notification::make()
-                ->title('This account was not found in your database.')
-                ->danger()
-                ->send();
+            $this->throwFailureValidationException();
         }
 
         $guard->login($user);
