@@ -2,6 +2,7 @@
 
 namespace BetterFuturesStudio\FilamentLocalLogins;
 
+use BetterFuturesStudio\FilamentLocalLogins\Filament\Pages\Auth\LoginPage;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 
@@ -19,7 +20,7 @@ class LocalLogins implements Plugin
         }
 
         $panel
-            ->login(config("filament-local-logins.panels.{$panel->getId()}.login_page"))
+            ->login(config("filament-local-logins.panels.{$panel->getId()}.login_page") ?? LoginPage::class)
             ->renderHook('panels::auth.login.form.before', fn () => view('filament-local-logins::login-buttons'));
     }
 
