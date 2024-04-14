@@ -87,7 +87,17 @@ In your .env file, add the following:
 ADMIN_PANEL_LOCAL_LOGIN_EMAILS="free-user@example.com,paid-user@example.com" # Provide a comma-separated list of emails that can log in locally
 ```
 
-If you wish to customize the default login page, you can modify the `'login_page' => LoginPage::class,` line to point to your desired class.
+If you wish to customize the default login page, you can modify the `'login_page' => LoginPage::class,` line to point to your desired class. After changing this, you will need to use the `HasLocalLogins` trait in your custom login page class.
+
+```php
+use BetterFuturesStudio\FilamentLocalLogins\Concerns\HasLocalLogins;
+use Filament\Pages\Auth\Login;
+
+class YourCustomLoginPage extends Login
+{
+    use HasLocalLogins;
+}
+```
 
 In your Filament panel provider, typically `AdminPanelProvider`, you need to register the plugin:
 
