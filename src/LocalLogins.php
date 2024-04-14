@@ -20,7 +20,7 @@ class LocalLogins implements Plugin
         }
 
         $panel
-            ->login(LoginPage::class)
+            ->login(config("filament-local-logins.panels.{$panel->getId()}.login_page", LoginPage::class))
             ->renderHook('panels::auth.login.form.before', fn () => view('filament-local-logins::login-buttons'));
     }
 

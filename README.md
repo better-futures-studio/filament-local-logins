@@ -37,11 +37,14 @@ php artisan vendor:publish --tag="filament-local-logins-config"
 This is the contents of the published config file:
 
 ```php
+use BetterFuturesStudio\FilamentLocalLogins\Filament\Pages\Auth\LoginPage;
+
 return [
     'panels' => [
         'admin' => [
             'enabled' => env('ADMIN_PANEL_LOCAL_LOGINS_ENABLED', env('APP_ENV') === 'local'),
             'emails' => array_filter(array_map('trim', explode(',', env('ADMIN_PANEL_LOCAL_LOGIN_EMAILS', '')))),
+            'login_page' => LoginPage::class,
         ],
     ],
 ];
@@ -50,15 +53,19 @@ return [
 You can use it in multiple panels so if you want to add a configuration for a new panel, you can add a new config key with the panel id. For example, you can add `user` panel configuration like this:
 
 ```php
+use BetterFuturesStudio\FilamentLocalLogins\Filament\Pages\Auth\LoginPage;
+
 return [
     'panels' => [
         'admin' => [
             'enabled' => env('ADMIN_PANEL_LOCAL_LOGINS_ENABLED', env('APP_ENV') === 'local'),
             'emails' => array_filter(array_map('trim', explode(',', env('ADMIN_PANEL_LOCAL_LOGIN_EMAILS', '')))),
+            'login_page' => LoginPage::class,
         ],
         'user' => [
             'enabled' => env('USER_PANEL_LOCAL_LOGINS_ENABLED', env('APP_ENV') === 'local'),
             'emails' => array_filter(array_map('trim', explode(',', env('USER_PANEL_LOCAL_LOGIN_EMAILS', '')))),
+            'login_page' => LoginPage::class,
         ],
     ],
 ];
@@ -78,6 +85,18 @@ In your .env file, add the following:
 
 ```bash
 ADMIN_PANEL_LOCAL_LOGIN_EMAILS="free-user@example.com,paid-user@example.com" # Provide a comma-separated list of emails that can log in locally
+```
+
+If you wish to customize the default login page, you can modify the `'login_page' => LoginPage::class,` line to point to your desired class. After changing this, you will need to use the `HasLocalLogins` trait in your custom login page class.
+
+```php
+use BetterFuturesStudio\FilamentLocalLogins\Concerns\HasLocalLogins;
+use Filament\Pages\Auth\Login;
+
+class YourCustomLoginPage extends Login
+{
+    use HasLocalLogins;
+}
 ```
 
 In your Filament panel provider, typically `AdminPanelProvider`, you need to register the plugin:
