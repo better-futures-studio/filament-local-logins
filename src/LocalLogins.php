@@ -29,6 +29,19 @@ class LocalLogins implements Plugin
         //
     }
 
+    public static function make(): static
+    {
+        return app(static::class);
+    }
+
+    public static function get(): static
+    {
+        /** @var static $plugin */
+        $plugin = filament(app(static::class)->getId());
+
+        return $plugin;
+    }
+
     public function isEnabled(string $panelId): bool
     {
         return (bool) config("filament-local-logins.panels.{$panelId}.enabled") && ! empty(config("filament-local-logins.panels.{$panelId}.emails"));
