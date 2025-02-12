@@ -2,6 +2,10 @@
 
 All notable changes to `filament-local-logins` will be documented in this file.
 
+## 1.3.0 - 2025-02-12
+
+Add `make()` method to match filament structure.
+
 ## 1.2.0 - 2024-04-14
 
 ### What's Changed
