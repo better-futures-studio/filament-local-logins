@@ -2,6 +2,10 @@
 
 All notable changes to `filament-local-logins` will be documented in this file.
 
+## 1.4.0 - 2025-05-05
+
+Add Laravel 12 support.
+
 ## 1.3.0 - 2025-02-12
 
 Add `make()` method to match filament structure.

@@ -4,11 +4,11 @@ namespace BetterFuturesStudio\FilamentLocalLogins\Concerns;
 
 use BetterFuturesStudio\FilamentLocalLogins\LocalLogins;
 use Filament\Facades\Filament;
-use Filament\Http\Responses\Auth\Contracts\LoginResponse;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
 use Illuminate\Auth\EloquentUserProvider;
 use Illuminate\Auth\SessionGuard;
+use Illuminate\Contracts\Support\Responsable;
 
 trait HasLocalLogins
 {
@@ -23,20 +23,18 @@ trait HasLocalLogins
             return [];
         }
 
-        $emails = config("filament-local-logins.panels.{$panel->getId()}.emails", []);
+        /** @var LocalLogins $plugin */
+        $plugin = $panel->getPlugin(LocalLogins::class);
 
-        if (! is_array($emails)) {
-            return [];
-        }
-
-        return $emails;
+        return $plugin->getEmails($panel->getId());
     }
 
-    public function loginUser(string $email): LoginResponse
+    public function loginUser(string $email): Responsable
     {
         $panel = Filament::getCurrentPanel();
 
         abort_unless($this->allowsLocalLogin($panel), 403, 'Local login is not allowed for this panel.');
+        abort_unless(in_array($email, $this->localLoginEmails(), true), 403, 'This account is not configured for local login.');
 
         throw_unless($panel instanceof Panel, 'The panel must be an instance of '.Panel::class);
 
@@ -70,12 +68,16 @@ trait HasLocalLogins
 
         session()->regenerate();
 
-        return app(LoginResponse::class);
+        $response = app($this->getLoginResponseContract());
+
+        throw_unless($response instanceof Responsable, 'The login response must implement '.Responsable::class);
+
+        return $response;
     }
 
     protected function allowsLocalLogin(?Panel $panel): bool
     {
-        if (empty($panel)) {
+        if (! $panel?->hasPlugin(LocalLogins::class)) {
             return false;
         }
 
@@ -86,5 +88,16 @@ trait HasLocalLogins
         }
 
         return $plugin->isEnabled($panel->getId());
+    }
+
+    protected function getLoginResponseContract(): string
+    {
+        $modernContract = 'Filament\\Auth\\Http\\Responses\\Contracts\\LoginResponse';
+
+        if (interface_exists($modernContract)) {
+            return $modernContract;
+        }
+
+        return 'Filament\\Http\\Responses\\Auth\\Contracts\\LoginResponse';
     }
 }
