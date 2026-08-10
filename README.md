@@ -7,7 +7,8 @@
 
 This package allows you to log in locally using pre-set email addresses, making it easy to log into one or multiple development user accounts. It can be used in an admin panel or multiple panels.
 
-**NOTE:** You must have created the user accounts in order to use them with the login buttons, this package doesn't support the creation of user accounts.
+> [!IMPORTANT]
+> Only enable local logins in trusted local environments. The package never creates users: every configured email must already belong to a user who can access the panel.
 
 ## Output
 
@@ -15,10 +16,15 @@ This package allows you to log in locally using pre-set email addresses, making 
 
 ## Requirements
 
-This package requires the following:
+Version 1 supports Filament 3, 4, and 5 while preserving the original PHP 8.1 and Laravel 10 support where the framework permits it.
 
-- `PHP:^8.1`
-- `Filament:^3.0`
+| Filament | Livewire | Laravel | PHP |
+| --- | --- | --- | --- |
+| `^3.0` | `^3.0` | 10–12 | `^8.1` |
+| `^4.0` | `^3.5` | 11–12 | `^8.2` |
+| `^5.0` | `^4.1` | 11–13 | `^8.2` |
+
+Composer will select the compatible versions for your application. Individual Laravel and Filament releases may require a newer PHP patch or minor version within these ranges.
 
 ## Installation
 
@@ -87,7 +93,21 @@ In your .env file, add the following:
 ADMIN_PANEL_LOCAL_LOGIN_EMAILS="free-user@example.com,paid-user@example.com" # Provide a comma-separated list of emails that can log in locally
 ```
 
-If you wish to customize the default login page, you can modify the `'login_page' => LoginPage::class,` line to point to your desired class. After changing this, you will need to use the `HasLocalLogins` trait in your custom login page class.
+If you wish to customize the default login page, change the `'login_page' => LoginPage::class,` line to point to your class and use the `HasLocalLogins` trait. Filament moved its login page namespace in version 4, so use the matching base class.
+
+For Filament 4 and 5:
+
+```php
+use BetterFuturesStudio\FilamentLocalLogins\Concerns\HasLocalLogins;
+use Filament\Auth\Pages\Login;
+
+class YourCustomLoginPage extends Login
+{
+    use HasLocalLogins;
+}
+```
+
+For Filament 3:
 
 ```php
 use BetterFuturesStudio\FilamentLocalLogins\Concerns\HasLocalLogins;
@@ -103,9 +123,11 @@ In your Filament panel provider, typically `AdminPanelProvider`, you need to reg
 
 ```php
 use BetterFuturesStudio\FilamentLocalLogins\LocalLogins;
-...
+
 $panel->plugin(new LocalLogins());
 ```
+
+Login requests are accepted only for the email addresses configured for the current panel. The selected user must also pass Filament's `canAccessPanel()` check.
 
 ## Testing
 

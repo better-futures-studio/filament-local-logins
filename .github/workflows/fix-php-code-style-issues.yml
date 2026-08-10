@@ -15,9 +15,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
-        with:
-          ref: ${{ github.head_ref }}
+        uses: actions/checkout@v7
 
       - name: Fix PHP code style issues
         uses: aglipanci/laravel-pint-action@2.6

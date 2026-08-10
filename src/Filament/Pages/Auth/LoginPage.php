@@ -3,9 +3,8 @@
 namespace BetterFuturesStudio\FilamentLocalLogins\Filament\Pages\Auth;
 
 use BetterFuturesStudio\FilamentLocalLogins\Concerns\HasLocalLogins;
-use Filament\Pages\Auth\Login;
 
-class LoginPage extends Login
+class LoginPage extends BaseLoginPage
 {
     use HasLocalLogins;
 }
