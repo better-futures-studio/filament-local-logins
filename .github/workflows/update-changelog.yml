@@ -25,8 +25,14 @@ jobs:
           release-notes: ${{ github.event.release.body }}
 
       - name: Commit updated CHANGELOG
+        id: auto-commit
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
-          branch: main
-          commit_message: Update CHANGELOG
+          branch: changelog/${{ github.event.release.tag_name }}
+          create_branch: true
+          commit_message: Update CHANGELOG for ${{ github.event.release.tag_name }}
           file_pattern: CHANGELOG.md
+
+      - name: Add pull request instructions
+        if: steps.auto-commit.outputs.changes_detected == 'true'
+        run: echo "Open a pull request from \`changelog/${{ github.event.release.tag_name }}\` into \`main\` to publish the generated changelog entry." >> "$GITHUB_STEP_SUMMARY"
