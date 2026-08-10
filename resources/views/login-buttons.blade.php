@@ -1,7 +1,7 @@
-<div class="flex flex-col gap-y-2">
+<div style="display: grid; gap: 0.5rem;">
     @foreach ($this->localLoginEmails() as $email)
         <x-filament::button
-            class="mb-2 w-full"
+            style="width: 100%;"
             wire:click="loginUser({{ Illuminate\Support\Js::from($email) }})"
             wire:loading.attr="disabled"
             wire:target="loginUser"

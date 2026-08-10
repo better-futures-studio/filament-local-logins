@@ -102,6 +102,17 @@ final class LocalLoginsTest extends TestCase
         ], (new TestLoginPage)->localLoginEmails());
     }
 
+    public function test_the_login_buttons_layout_does_not_depend_on_compiled_tailwind_utilities(): void
+    {
+        $view = file_get_contents(__DIR__.'/../resources/views/login-buttons.blade.php');
+
+        self::assertIsString($view);
+        self::assertStringContainsString('style="display: grid; gap: 0.5rem;"', $view);
+        self::assertStringContainsString('style="width: 100%;"', $view);
+        self::assertStringNotContainsString('class="flex flex-col gap-y-2"', $view);
+        self::assertStringNotContainsString('class="mb-2 w-full"', $view);
+    }
+
     public function test_it_rejects_an_account_that_is_not_configured_for_local_login(): void
     {
         User::query()->create([

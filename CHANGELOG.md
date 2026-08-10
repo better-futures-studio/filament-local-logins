@@ -2,6 +2,15 @@
 
 All notable changes to `filament-local-logins` will be documented in this file.
 
+## 1.5.1 - 2026-08-10
+
+### Fixes
+
+- Keep local-login buttons full width on Filament 5 without requiring consumers to compile the package's Tailwind classes.
+- Add regression coverage for the build-independent button layout.
+
+**Full Changelog**: https://github.com/better-futures-studio/filament-local-logins/compare/1.5.0...1.5.1
+
 ## 1.5.0 - 2026-08-10
 
 ### Compatibility
